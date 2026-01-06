@@ -1,1 +1,19 @@
-node_modules
+# Diretórios de build
+dist/
+tmp/
+
+# Dependências do Node
+node_modules/
+
+# Arquivos e pastas de logs e temporários
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de IDE/Editor (Ex: VS Code)
+.vscode/
+
+# Arquivos de cache e build do Angular CLI
+.angular/cache/
+
