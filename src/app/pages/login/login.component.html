@@ -1,6 +1,63 @@
-<div class="page-login">
+<div class="page-login"> 
+        <form>
+            <div *ngIf="isLoginCard" class="card" style="max-width: 35dvw; padding: .5rem;">
+                    <div class="text-center">
+                        <h1>Login</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" >
+                        </div>
 
-   
+                        <label for="inputPassword5" class="form-label">Password</label>
+                        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+
+                        <div class="d-flex pt-4 justify-content-center"><button type="button" class="btn btn-primary">Login</button> </div>
+
+                        <span class="d-flex justify-content-center p-4">
+                            <a class="link-offset-2 link-underline link-underline-opacity-0 color=black" (click)="isLoginCard = !isLoginCard" style="cursor:pointer">Criar Conta</a>
+                        </span>
+                        
+                </div>
+            </div>
+
+
+            <!-- Criar Conta--> 
+        <div *ngIf="!isLoginCard" class="card" style="max-width: 35dvw; padding: .5rem;" >
+            <div class="text-center">
+                <h1>Criar conta</h1>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput0" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput0" >
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" >
+                </div>
+
+                <label for="inputPassword5" class="form-label">Password</label>
+                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+
+                <div class="d-flex pt-4 justify-content-center"><button type="button" class="btn btn-primary">Login</button> </div>
+
+                <span class="d-flex justify-content-center p-4">
+                    <a class="link-offset-2 link-underline link-underline-opacity-0 color=black" (click)="isLoginCard = !isLoginCard" style="cursor: pointer;">Fazer login</a>
+                </span>                
+            </div>
+        </div>
+
+
+    </form>
+
+        
+        
+
+        
+    
 
 
 </div>
