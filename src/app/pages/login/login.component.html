@@ -1,5 +1,5 @@
 <div class="page-login"> 
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
             <div *ngIf="isLoginCard" class="card" style="width: 25dvw; padding: .5rem;">
                     <div class=" pt-2 text-center">
                         <h1>Login</h1>
@@ -7,51 +7,54 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" >
+                            <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="email" >
                         </div>
 
                         <label for="inputPassword5" class="form-label">Password</label>
-                        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" formControlName="password">
 
-                        <div class="d-flex pt-4 justify-content-center"><button type="button" class="btn btn-primary">Login</button> </div>
+                        <div class="d-flex pt-4 justify-content-center"><button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button> </div>
 
                         <span class="d-flex justify-content-center p-4">
-                            <a class="link-offset-2 link-underline link-underline-opacity-0 color=black" (click)="isLoginCard = !isLoginCard" style="cursor:pointer">Criar Conta</a>
+                            <a class="link-offset-2 link-underline link-underline-opacity-0 color=black" (click)="isLoginCard = !isLoginCard" style="cursor:pointer" >Criar Conta</a>
                         </span>
                         
                 </div>
             </div>
 
+        </form>
 
-            <!-- Criar Conta--> 
-        <div *ngIf="!isLoginCard" class="card" style="max-width: 35dvw; padding: .5rem;" >
-            <div class="text-center">
-                <h1>Criar conta</h1>
-            </div>
-            <div class="card-body">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput0" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput0" >
+        <form [formGroup]="sigUpForm" (ngSubmit)="onSubmitSigUp()">
+
+                <!-- Criar Conta--> 
+            <div *ngIf="!isLoginCard" class="card" style="width: 25dvw; padding: .5rem;" >
+                <div class="text-center">
+                    <h1>Criar conta</h1>
                 </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput0" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput0" formControlName="name">
+                    </div>
 
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" >
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="email">
+                    </div>
+
+                    <label for="inputPassword5" class="form-label">Password</label>
+                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" formControlName="password">
+
+                    <div class="d-flex pt-4 justify-content-center"><button type="submit" class="btn btn-primary" [disabled]="!sigUpForm.valid">Criar conta</button> </div>
+
+                    <span class="d-flex justify-content-center p-4">
+                        <a class="link-offset-2 link-underline link-underline-opacity-0 color=black" (click)="isLoginCard = !isLoginCard" style="cursor: pointer;">Fazer login</a>
+                    </span>                
                 </div>
-
-                <label for="inputPassword5" class="form-label">Password</label>
-                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
-
-                <div class="d-flex pt-4 justify-content-center"><button type="button" class="btn btn-primary">Login</button> </div>
-
-                <span class="d-flex justify-content-center p-4">
-                    <a class="link-offset-2 link-underline link-underline-opacity-0 color=black" (click)="isLoginCard = !isLoginCard" style="cursor: pointer;">Fazer login</a>
-                </span>                
             </div>
-        </div>
 
 
-    </form>
+        </form>
 
         
         

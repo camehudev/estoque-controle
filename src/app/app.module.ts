@@ -10,6 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 import {MatCardModule} from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {MatCardModule} from '@angular/material/card';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
-    
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration(),
