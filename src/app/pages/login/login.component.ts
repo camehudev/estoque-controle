@@ -1,5 +1,11 @@
+
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../../service/user/user.service';
+import { SignupUserRequest } from '../../modules/interface/SignupUserRequest';
+import { AuthRequest } from '../../service/auth/AuthRequest';
+import { AuthResponse } from './../../service/auth/AuthResponse';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -9,29 +15,76 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   isLoginCard: boolean = true;
+  isSuccess: boolean = false;
+  isError: boolean = false;
+  isSuccessCreateUser: boolean = false;
+  isErrorCreateUser:boolean = false
 
   loginForm = this.formBuilder.group({
-    email:['', Validators.required],
-    password:['',Validators.required]
+    userName:['', Validators.required],
+    passUser:['',Validators.required]
   })
 
   sigUpForm = this.formBuilder.group({
-    name:['',Validators.required],
+    userName:['',Validators.required],
     email:['', Validators.required],
-    password:['',Validators.required]
+    passUser:['',Validators.required],
+    tipoUser:['', Validators.required]
   })
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userService: UserService,
+    private cookService: CookieService
+
+  ){
+    this.sigUpForm.reset();
 
   }
 
+  
   onSubmitLogin(): void{
-    console.log(this.loginForm.value)
+    if (this.loginForm.value && this.loginForm.valid){
+      this.userService.authUser(this.loginForm.value as AuthRequest).subscribe({
+        next: (response: AuthResponse)=>{
+             if(response){    
+              this.isSuccess = true;         
+              this.cookService.set('token', response?.token);                
+              this.loginForm.reset();
+             }
+        },
+
+        error:(error)=>{
+          this.isError =true;
+          console.log(error)
+        }
+      })
+    }
 
   }
 
   onSubmitSigUp():void {
-    console.log(this.sigUpForm.value);
+    if (this.sigUpForm. value && this.sigUpForm.valid){
+      this.userService.signupUser(this.sigUpForm.value as unknown as SignupUserRequest).subscribe({
+
+        next: (response)=>{
+          if(response){
+            this.isSuccessCreateUser = true;
+            this.sigUpForm.reset();
+            
+
+          }
+
+        },
+
+        error:(error)=>{
+          this.isErrorCreateUser = true;
+          console.log(error)
+        }
+
+      })
+    }
+    
   }
 
 }

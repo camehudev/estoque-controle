@@ -4,14 +4,20 @@
                     <div class=" pt-2 text-center">
                         <h1>Login</h1>
                     </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="email" >
+                    <div *ngIf="isSuccess" class="alert alert-success mt-2 mb-2" role="alert">
+                        Usuario autenticado com sucesso!
+                    </div>
+                    <div *ngIf="isError" class="alert alert-danger mt-2 mb-2" role="alert">
+                        Verifique o usuário e a senha ou fale com o adminstrador.
                         </div>
+                    <div class="card-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Usuario</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="userName" >
+                    </div>"
 
                         <label for="inputPassword5" class="form-label">Password</label>
-                        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" formControlName="password">
+                        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" formControlName="passUser">
 
                         <div class="d-flex pt-4 justify-content-center"><button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button> </div>
 
@@ -31,10 +37,17 @@
                 <div class="text-center">
                     <h1>Criar conta</h1>
                 </div>
+
+                 <div *ngIf="isSuccessCreateUser" class="alert alert-success mt-2 mb-2" role="alert">
+                        Usuario criado com sucesso!
+                    </div>
+                    <div *ngIf="isErrorCreateUser" class="alert alert-danger mt-2 mb-2" role="alert">
+                        Crenciais invalidas. Fale com o adminstrador.
+                    </div>
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="exampleFormControlInput0" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput0" formControlName="name">
+                        <input type="text" class="form-control" id="exampleFormControlInput0" formControlName="userName">
                     </div>
 
                     <div class="mb-3">
@@ -43,7 +56,10 @@
                     </div>
 
                     <label for="inputPassword5" class="form-label">Password</label>
-                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" formControlName="password">
+                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" formControlName="passUser">
+
+                    <label for="input|tipoUser6" class="form-label">Tipo</label>
+                    <input type="test" id="inputTipoUser6" class="form-control" aria-describedby="tipoUserdHelpBlock" formControlName="tipoUser">
 
                     <div class="d-flex pt-4 justify-content-center"><button type="submit" class="btn btn-primary" [disabled]="!sigUpForm.valid">Criar conta</button> </div>
 
