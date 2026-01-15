@@ -6,6 +6,7 @@ import { SignupUserRequest } from '../../modules/interface/SignupUserRequest';
 import { AuthRequest } from '../../service/auth/AuthRequest';
 import { AuthResponse } from './../../service/auth/AuthResponse';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
   isSuccess: boolean = false;
   isError: boolean = false;
   isSuccessCreateUser: boolean = false;
-  isErrorCreateUser:boolean = false
+  isErrorCreateUser:boolean = false;
+  usuarioLogged: string = '';
 
   loginForm = this.formBuilder.group({
     userName:['', Validators.required],
@@ -35,7 +37,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder, 
     private userService: UserService,
-    private cookService: CookieService
+    private cookService: CookieService,
+    private router : Router
 
   ){
     this.sigUpForm.reset();
@@ -47,10 +50,14 @@ export class LoginComponent {
     if (this.loginForm.value && this.loginForm.valid){
       this.userService.authUser(this.loginForm.value as AuthRequest).subscribe({
         next: (response: AuthResponse)=>{
-             if(response){    
+          console.log(response)
+             if(response){
+                
               this.isSuccess = true;         
-              this.cookService.set('token', response?.token);                
+              this.cookService.set( "token", response?.token);
+              this.usuarioLogged = response?.name;                      
               this.loginForm.reset();
+              this.router.navigate(['/dashboard'])
              }
         },
 

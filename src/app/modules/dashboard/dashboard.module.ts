@@ -6,12 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DASHBOARD_ROUTES } from './dashboard.routing';
 import { CookieService } from 'ngx-cookie-service';
-
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-     HomeComponent
+     HomeComponent,
      
   ],
   imports: [
@@ -19,6 +19,9 @@ import { CookieService } from 'ngx-cookie-service';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    SharedModule,
+    
+  
     RouterModule.forChild(DASHBOARD_ROUTES)
   ],
 

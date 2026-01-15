@@ -37,8 +37,11 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
+              
+              
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -103,8 +106,11 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
+              
+ 
             ],
             "scripts": []
           }

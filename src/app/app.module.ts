@@ -7,33 +7,37 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { LoginComponent } from './pages/login/login.component';
-import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 
 import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+
+
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    MenuBarComponent,
-    
+    LoginComponent,  
     
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,  
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [
     CookieService,
+    provideCharts(withDefaultRegisterables()),
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch())
