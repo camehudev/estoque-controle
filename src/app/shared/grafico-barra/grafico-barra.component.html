@@ -1,0 +1,11 @@
+<div *ngIf="data" class="d-flex p-4 card">
+  <canvas  
+   baseChart
+  [data]="data"
+  [type]="type"
+  [options]="options"
+  (chartClick)="chartClick.emit($event)">
+  </canvas>
+
+
+</div>

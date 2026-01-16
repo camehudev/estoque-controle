@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ChartConfiguration } from 'chart.js';
+import { ChartConfiguration, ChartData, ChartOptions, ChartType } from 'chart.js';
+import { ProductsService } from '../../../../service/products/products.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +8,12 @@ import { ChartConfiguration } from 'chart.js';
   standalone:false
 })
 export class HomeComponent {
+  
+ 
 
+ constructor(){}
 
-  barChartData: ChartConfiguration['data'] = {
-    labels: ['Jan', 'Fev', 'Mar'],
-    datasets: [
-      { data: [100, 200, 150], label: 'Vendas' }
-    ]
-  };
+  
+  
 
 }

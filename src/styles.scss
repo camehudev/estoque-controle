@@ -10,17 +10,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 10vw;
     background-color: rgb(250, 249, 249);
     font-size: 16px;
+}
+
+/* Sidebar fixa */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 999;
     
-
-a{
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 400;
-    color: rgb(18, 77, 40);
 }
 
-a:hover{
-  color: rgb(43, 42, 42);
 
-}
-
-}

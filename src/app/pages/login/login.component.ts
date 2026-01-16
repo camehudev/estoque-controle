@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../service/user/user.service';
 import { SignupUserRequest } from '../../modules/interface/SignupUserRequest';
@@ -7,6 +7,7 @@ import { AuthRequest } from '../../service/auth/AuthRequest';
 import { AuthResponse } from './../../service/auth/AuthResponse';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
   standalone:false,
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
+  private destroy$ = new Subject<void>();
+
   isLoginCard: boolean = true;
   isSuccess: boolean = false;
   isError: boolean = false;
@@ -48,9 +51,13 @@ export class LoginComponent {
   
   onSubmitLogin(): void{
     if (this.loginForm.value && this.loginForm.valid){
-      this.userService.authUser(this.loginForm.value as AuthRequest).subscribe({
-        next: (response: AuthResponse)=>{
-          console.log(response)
+      this.userService.authUser(this.loginForm.value as AuthRequest)
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      
+      .subscribe({
+        next: (response: AuthResponse)=>{ 
              if(response){
                 
               this.isSuccess = true;         
@@ -72,7 +79,11 @@ export class LoginComponent {
 
   onSubmitSigUp():void {
     if (this.sigUpForm. value && this.sigUpForm.valid){
-      this.userService.signupUser(this.sigUpForm.value as unknown as SignupUserRequest).subscribe({
+      this.userService.signupUser(this.sigUpForm.value as unknown as SignupUserRequest)
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe({
 
         next: (response)=>{
           if(response){
@@ -92,6 +103,11 @@ export class LoginComponent {
       })
     }
     
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

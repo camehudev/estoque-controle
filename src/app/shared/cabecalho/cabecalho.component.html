@@ -1,16 +1,15 @@
 <nav class="navbar bg-body-tertiary">    
   <div class="container-fluid">
     <div class="d-flex" style="height: 5vh;">
-        <img src="../../../../../assets/fruit basket.png" class="img-fluid" alt="logo do sistema" width="40" height="40" style="margin-right: 0.8rem;">  
-        <a class="navbar-brand ml-3 mt-2" href="#">SHortfruiti</a>
+  
     </div>
     
 
   <ul class="nav ">       
 
     <div class="d-flex" style="width: auto; font-size: 16px; font-weight: 400;">
-    <div class="m-2"><strong>Operador : </strong>Carlos Humberto </div>
-    <div class="m-2"><strong>Data : </strong>{{ clockService.time$ | async | date:'dd/MM/yyyy' }} </div>
+    <div class="m-2"><strong>Usuario: </strong>Carlos Humberto </div>
+    <div class="m-2"><strong>Data:  </strong>{{ clockService.time$ | async | date:'dd/MM/yyyy' }} </div>
     <div class="m-2"><strong>Hora: </strong>{{ clockService.time$ | async | date:'HH:mm:ss' }} </div>      
     </div>
 

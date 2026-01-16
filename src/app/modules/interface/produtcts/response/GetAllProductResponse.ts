@@ -1,8 +1,8 @@
 export interface GetAllProductsResponse {
     id: string,
-    nameProduto:string,
+    nome:string,
     descricao:string,
-    quantidade:number,
+    estoqueAtual:number,
     preco:string,
     categoria:{
         id: string,

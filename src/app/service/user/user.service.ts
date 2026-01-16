@@ -22,7 +22,6 @@ export class UserService {
   }
 
   authUser(authRsquestDatas: AuthRequest): Observable<AuthResponse>{
-    console.log(authRsquestDatas)
     return this.http.post<AuthResponse>(`${this.API_URL}/api/v1/usuario/search`, authRsquestDatas)
 
   }
