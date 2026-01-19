@@ -4,6 +4,7 @@ import { ProductsService } from '../../../../../service/products/products.servic
 import { ProductsServiceTransferService } from '../../../../../shared/services/products/products-service-transfer.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ChartData, ChartOptions } from 'chart.js';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,15 +13,19 @@ import { ChartData, ChartOptions } from 'chart.js';
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<void>();
+  private readonly destroy$ = new Subject<void>();
+  public pdrDatas: Array<GetAllProductsResponse> =[];
+  public productListLow : Array<GetAllProductsResponse> = [];
 
    constructor(
     private estoqueService:ProductsService,
     private productsService: ProductsService,
-    private productsServiceTransferService: ProductsServiceTransferService
+    private productsServiceTransferService: ProductsServiceTransferService,
+    private router:Router,
+
   ) {}
 
-  public productList : Array<GetAllProductsResponse> = [];
+  
 
   getProductDatas(): void{
     this.productsService.getAllProducts()
@@ -31,11 +36,55 @@ export class ProductsComponent implements OnInit, OnDestroy {
       next: (response)=>{
 
         if(response.length){
-          this.productList = response;          
-          this.productsServiceTransferService.setProductsDatas(this.productList);
+          this.pdrDatas = response;    
+          console.log(response)      
+          this.productsServiceTransferService.setProductsDatas(this.pdrDatas);
         }
 
       },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
+
+  }  
+
+
+  getProductDataslow(): void{
+    this.productsService.getAllProductslOW()
+    .pipe(
+      takeUntil(this.destroy$)
+    )
+    .subscribe({
+      next: (response)=>{
+
+        if(response.length){
+          this.productListLow = response;    
+          
+        }
+
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
+
+  } 
+
+
+  getAllProductDatas(): void{
+    this.productsService.getAllProducts()
+    .pipe(
+      takeUntil(this.destroy$)
+    )
+    .subscribe({
+      next: (response)=>{
+
+        if(response.length){
+          this.pdrDatas = response;    
+          console.log(response); 
+        }
+},
       error:(error)=>{
         console.log(error)
       }
@@ -67,7 +116,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
 
   carregarGrafico() {
-    this.estoqueService.getAllProducts().subscribe({
+    this.estoqueService.getAllProductslOW().subscribe({
       next: (produtos) =>
         { 
            if(produtos){
@@ -91,6 +140,21 @@ export class ProductsComponent implements OnInit, OnDestroy {
         }
       ]
     };
+  }
+
+  getServiceProductDatas(){
+    const productLoaded=  this.productsServiceTransferService.getPrdoutsDatas();
+
+    if(productLoaded.length > 0){
+      this.pdrDatas = productLoaded;
+      console.log(this.pdrDatas);
+
+    }else{
+
+      this.getAllProductDatas();
+
+    }
+
   }
 
   ngOnInit(): void {

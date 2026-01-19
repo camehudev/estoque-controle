@@ -1,13 +1,36 @@
-<div class="d-flex justify-content-center p-3">
+<div class="d-flex flex-column justify-content-center p-3">
 
-  <div *ngIf="isCharData">               
-          <app-grafico-barra               
-            [data]="chartData"
-            [type]="'bar'"
-            [options]="chartOptions">
-          </app-grafico-barra>
+  <div class="d-flex mb-4"  *ngIf="isCharData">
+    
+    <div class="card m-3" >
+      <app-grafico-barra               
+        [data]="chartData"
+        [type]="'bar'"
+        [options]="chartOptions">
+      </app-grafico-barra>
+    </div>
 
-        </div>
+    <div class="card m-3">
+      <app-grafico-barra               
+        [data]="chartData"
+        [type]="'bar'"
+        [options]="chartOptions">
+      </app-grafico-barra>
+    </div>
+
+    <div class="card m-3">
+      <app-grafico-barra               
+        [data]="chartData"
+        [type]="'bar'"
+        [options]="chartOptions">
+      </app-grafico-barra>
+    </div>
+
+  </div>
+
+
+    <div><app-tabel-produto [pdrDatas]="pdrDatas"></app-tabel-produto></div>   
+
 </div>
 
 

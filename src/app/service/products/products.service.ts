@@ -41,6 +41,18 @@ export class ProductsService {
     )
     .pipe(
       map((products) =>
+        products.filter(product => product.estoqueAtual > 10 )
+      )
+    );
+}
+
+  getAllProductslOW(): Observable<GetAllProductsResponse[]> {
+  return this.http
+    .get<GetAllProductsResponse[]>(
+      `${this.API_URL}/api/v1/produtos/list`,this.getHttpOptions()
+    )
+    .pipe(
+      map((products) =>
         products.filter(product => product.estoqueAtual <= 10 )
       )
     );

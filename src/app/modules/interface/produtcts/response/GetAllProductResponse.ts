@@ -1,8 +1,9 @@
 export interface GetAllProductsResponse {
-    id: string,
+    _id: string,
     nome:string,
     descricao:string,
     estoqueAtual:number,
+    estoqueMinimo:number,
     preco:string,
     categoria:{
         id: string,

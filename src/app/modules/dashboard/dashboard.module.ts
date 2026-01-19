@@ -10,6 +10,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { ProductsComponent } from './pages/products/products/products.component';
+import { TabelProdutoComponent } from './components/tabel-produto/tabel-produto.component';
 
 
 
@@ -19,7 +20,8 @@ import { ProductsComponent } from './pages/products/products/products.component'
 declarations: [
     DashboardComponent,
     HomeComponent,
-    ProductsComponent
+    ProductsComponent,
+    TabelProdutoComponent
      
   ],
   imports: [

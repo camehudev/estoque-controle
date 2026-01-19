@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center card p-3 table-responsive mt-4">
+    <div class="d-flex align-items-center">
+      <div class="input-group input-group-lg mt-4 mb-4">       
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Busque pelo produto ou id">
+      </div>
+      <div class="p-2">
+        <button type="button" class="btn btn-success btn-lg">Adicionar</button>
+      </div>
+
+    </div>  
+    
+
+      <table class="table">       
+        <thead>
+          <tr >
+            <th scope="col p-2">ID</th>
+            <th scope="col p-2">PRODUTO</th>
+            <th scope="col p-2">CATEGORIA</th>
+            <th scope="col p-2">ESTOQUE(Atual)</th>
+            <th scope="col p-2">ESTOQUE(Min)</th>
+            <th scope="col p-2">PREÇO</th>
+            <th scope="col p-2">AÇÕES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="padding: 1.5rem;" *ngFor="let produto of pdrDatas">
+            <th scope="row">{{ produto._id }}</th>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.categoria }}</td>
+            <td>{{ produto.estoqueAtual }}</td>
+            <td>{{ produto.estoqueMinimo }}</td>
+            <td>{{ produto.preco | currency:'BRL' }}</td>
+            <td>
+              <div class="d-flex">
+                <div class="p-2"><a routerLink="/produtos"><i class="bi bi-pencil-square"></i></a></div>
+                <div class="p-2"><a routerLink="/produtos"> <i class="bi bi-trash"></i></a> </div>
+              </div>
+            </td>
+          </tr>    
+        </tbody>
+      </table>
+
+      </div>
